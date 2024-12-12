@@ -13,7 +13,7 @@ class TestDictOrdering(unittest.TestCase):
         original = {
             'nope': None,
             'first': {
-                'go': 'not deep'
+                'type': 'string'
             },
             'second': {},
             'last': 1234
@@ -21,12 +21,10 @@ class TestDictOrdering(unittest.TestCase):
         expected = {
             'nope': None,
             'first': {
-                'go': 'not deep',
+                'type': 'string',
                 'ordering': 0
             },
-            'second': {
-                'ordering': 1
-            },
+            'second': {},
             'last': 1234
         }
         self.assertEqual(expected, add_orderings(original))
@@ -45,7 +43,11 @@ class TestDictOrdering(unittest.TestCase):
                             'hello': 'world'
                         },
                         'object2': {
+                            'type': 'string',
                             'this is': 'deep enough'
+                        },
+                        'type': {
+                            'type': 'number'
                         }
                     }
                 }
@@ -71,13 +73,16 @@ class TestDictOrdering(unittest.TestCase):
                     'deeper': {
                         'object1': {
                             'hello': 'world',
-                            'ordering': 0
                         },
                         'object2': {
+                            'type': 'string',
                             'this is': 'deep enough',
-                            'ordering': 1
+                            'ordering': 0
                         },
-                        'ordering': 0
+                        'type': {
+                            'type': 'number',
+                            'ordering': 1
+                        }
                     },
                     'ordering': 1
                 },
